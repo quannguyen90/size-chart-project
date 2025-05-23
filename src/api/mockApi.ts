@@ -256,7 +256,7 @@ export const getSizeChart = async (
     return directChart;
   }
 
-  // If not found, check in product types
+  // If not found, check in product types (ignore customerId for mock)
   let foundSizeChart: SizeChart | null = null;
   for (const category of mockProductCategories) {
     for (const productType of category.productTypes) {
@@ -270,27 +270,4 @@ export const getSizeChart = async (
   }
 
   return foundSizeChart;
-};
-
-export const getProductCategories = async (): Promise<ProductCategory[]> => {
-  // Simulate API delay
-  await new Promise((resolve) => setTimeout(resolve, 500));
-  return mockProductCategories;
-};
-
-export const getProductTypeById = async (
-    productTypeId: string
-): Promise<ProductType | null> => {
-    // Simulate API delay
-    await new Promise((resolve) => setTimeout(resolve, 500));
-
-    let foundProductType: ProductType | null = null;
-    for (const category of mockProductCategories) {
-        const type = category.productTypes.find(type => type.id === productTypeId);
-        if (type) {
-            foundProductType = type;
-            break;
-        }
-    }
-    return foundProductType;
 };
