@@ -5,12 +5,13 @@ import ShopBaseEmbed from "./embed/shopbase-embed";
 
 function App() {
   return (
-    <Router>
+    <Router base="/size-chart-project">
       <Route path="/" component={Guide} />
+      <Route path="/guide" component={Guide} />
       <Route path="/embed/:customerId/:sizeChartId" component={SizeChartEmbed} />
       <Route path="/embed/shopbase" component={ShopBaseEmbed} />
     </Router>
   );
 }
 
-export default App; 
+export default App;

@@ -224,7 +224,7 @@ function Guide() {
                   ))}
                   {selectedProductType()?.name === 'Classic Tee' && (
                     <div class="mt-4 flex justify-center">
-                      <img src="/classic-tee-diagram.png" alt="Classic Tee Measurement Diagram" class="max-w-xs"/>
+                      <img src={import.meta.env.BASE_URL + 'classic-tee-diagram.png'} alt="Classic Tee Measurement Diagram" class="max-w-xs"/>
                     </div>
                   )}
                 </div>
