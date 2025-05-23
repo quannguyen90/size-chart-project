@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Size Chart Embed</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 20px;
+        }
+        iframe {
+            border: 1px solid #ccc;
+            width: 100%;
+            min-height: 100px;
+            transition: height 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <h1>Testing Size Chart Embed</h1>
+    <p>Below is the size chart embedded using an iframe:</p>
+
+    <iframe
+      id="sizeChartFrame"
+      src="https://quannguyen90.github.io/size-chart-project/embed/customer123/tshirt-1"
+      title="Size Chart"
+      frameborder="0"
+      scrolling="no"
+    ></iframe>
+
+    <p>End of embedded size chart.</p>
+
+    <script>
+        const iframe = document.getElementById('sizeChartFrame');
+        
+        // Listen for messages from the iframe
+        window.addEventListener('message', (event) => {
+            // Verify the origin of the message
+            if (event.origin !== 'https://quannguyen90.github.io') return;
+            
+            // Handle resize message
+            if (event.data.type === 'resize') {
+                iframe.style.height = `${event.data.height}px`;
+            }
+        });
+    </script>
+</body>
+</html> 

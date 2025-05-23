@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopBase Product Page Test</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            margin: 0;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .product-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 20px;
+        }
+        .product-image {
+            background: #f5f5f5;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+        }
+        .product-info {
+            padding: 20px;
+        }
+        .product-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .product-price {
+            font-size: 20px;
+            color: #F48220;
+            margin-bottom: 20px;
+        }
+        .product-description {
+            margin-top: 40px;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+        iframe {
+            border: none;
+            width: 100%;
+            min-height: 100px;
+            transition: height 0.3s ease;
+        }
+        .size-chart-section {
+            margin-top: 20px;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="product-container">
+        <div class="product-image">
+            [Product Image]
+        </div>
+        <div class="product-info">
+            <h1 class="product-title">Classic T-Shirt</h1>
+            <div class="product-price">$29.99</div>
+            
+            <div class="product-description">
+                <h2>Product Description</h2>
+                <p>This is a sample product description. The size chart will be embedded below.</p>
+                
+                <div class="size-chart-section">
+                    <h3>Size Chart</h3>
+                    <iframe
+                        id="sizeChartFrame"
+                        src="https://quannguyen90.github.io/size-chart-project/embed/shopbase?customerId=customer123&sizeChartId=tshirt-1&language=en"
+                        title="Size Chart"
+                        frameborder="0"
+                        scrolling="no"
+                    ></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const iframe = document.getElementById('sizeChartFrame');
+        
+        // Listen for messages from the iframe
+        window.addEventListener('message', (event) => {
+            // Verify the origin of the message
+            if (event.origin !== 'https://quannguyen90.github.io') return;
+            
+            // Handle resize message
+            if (event.data.type === 'resize') {
+                iframe.style.height = `${event.data.height}px`;
+            }
+        });
+    </script>
+</body>
+</html> 

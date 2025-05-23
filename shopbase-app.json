@@ -1,0 +1,38 @@
+{
+  "name": "Size Chart",
+  "version": "1.0.0",
+  "description": "Embed size charts in your ShopBase store",
+  "app": {
+    "name": "Size Chart",
+    "description": "Embed size charts in your ShopBase store",
+    "icon": "https://your-domain.com/icon.png",
+    "entry_points": {
+      "product": {
+        "type": "embed",
+        "target": "product_description",
+        "url": "https://your-domain.com/embed/shopbase",
+        "settings": {
+          "customerId": {
+            "type": "text",
+            "label": "Customer ID",
+            "required": true
+          },
+          "sizeChartId": {
+            "type": "text",
+            "label": "Size Chart ID",
+            "required": true
+          },
+          "language": {
+            "type": "select",
+            "label": "Language",
+            "options": [
+              { "value": "en", "label": "English" },
+              { "value": "vi", "label": "Vietnamese" }
+            ],
+            "default": "en"
+          }
+        }
+      }
+    }
+  }
+} 
