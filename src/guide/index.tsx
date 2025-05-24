@@ -13,6 +13,7 @@ function Guide() {
   const [currentLanguage, setCurrentLanguage] = createSignal<Language>('en');
   const [showLanguageDropdown, setShowLanguageDropdown] = createSignal(false);
   const pageSize = 18;
+  const [totalPages, setTotalPages] = createSignal(1);
 
   const t = () => TRANSLATIONS[currentLanguage()];
 
@@ -50,6 +51,8 @@ function Guide() {
       if (categories.length > 0 && categories[0].productTypes.length > 0) {
         const types = categories[0].productTypes;
         setProductTypes(types);
+        // Calculate total pages based on filtered types and pageSize
+        setTotalPages(Math.ceil(types.length / pageSize));
 
         if (productTypeId) {
           // Find and select the product type that matches the ID
@@ -88,6 +91,7 @@ function Guide() {
 
   const paginatedProductTypes = () => {
     const filtered = filteredProductTypes();
+    setTotalPages(Math.ceil(filtered.length / pageSize));
     return filtered.slice(0, currentPage() * pageSize);
   };
 
@@ -103,6 +107,10 @@ function Guide() {
     }
   };
 
+  // Button logic for Show More/Collapse
+  const shouldShowShowMore = () => totalPages() > 1 && currentPage() < totalPages();
+  const shouldShowCollapse = () => totalPages() > 1 && currentPage() === totalPages();
+
   return (
     <div class="min-h-screen bg-gray-50">
       {/* Fixed Header */}
@@ -111,22 +119,24 @@ function Guide() {
           <div class="text-center mb-4">
             <h1 class="text-3xl font-extrabold text-gray-900">{t().title}</h1>
           </div>
-          <div class="relative">
-            <input
-              type="text"
-              placeholder={t().searchPlaceholder}
-              value={searchQuery()}
-              onInput={(e) => {
-                setSearchQuery(e.currentTarget.value);
-                setCurrentPage(1);
-              }}
-              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-1 focus:ring-[#F48220] focus:border-[#F48220] focus:outline-none"
-            />
-            <div class="absolute inset-y-0 right-0 flex items-center pr-3">
-              <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-              </svg>
-            </div>
+          <div class="relative flex justify-center mt-4">
+            <form class="w-full max-w-xs relative" onSubmit={e => { e.preventDefault(); setCurrentPage(1); }}>
+              <input
+                type="text"
+                placeholder={t().searchPlaceholder}
+                value={searchQuery()}
+                onInput={(e) => {
+                  setSearchQuery(e.currentTarget.value);
+                  setCurrentPage(1);
+                }}
+                class="w-full px-6 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-0 focus:border-gray-300 text-base h-12 pr-12 transition-shadow"
+              />
+              <button type="submit" class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-primary focus:outline-none bg-transparent p-0 m-0 border-0">
+                <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+              </button>
+            </form>
           </div>
         </div>
       </div>
@@ -149,17 +159,12 @@ function Guide() {
                   {paginatedProductTypes().map(productType => (
                     <div
                       onClick={() => handleProductTypeSelect(productType)}
-                      class={
-                        `cursor-pointer p-3 border rounded-lg text-center transition-colors ${
-                          selectedProductType()?.id === productType.id
-                            ? 'border-[#F48220] bg-[#FFF5ED]'
-                            : 'border-gray-200 hover:bg-gray-100'
-                        }`
-                      }
+                      class={`cursor-pointer p-3 border rounded-lg text-center transition-colors ${
+                        selectedProductType()?.id === productType.id
+                          ? 'border-primary bg-primary/10'
+                          : 'border-gray-200 hover:bg-gray-100'
+                      }`}
                     >
-                      {productType.image && (
-                        <img src={productType.image} alt={productType.name} class="mx-auto mb-2 w-14 h-14 object-contain" />
-                      )}
                       <p class="text-sm font-medium text-gray-700">{productType.name}</p>
                     </div>
                   ))}
@@ -169,14 +174,24 @@ function Guide() {
                     {t().noResults}
                   </div>
                 )}
-                {filteredProductTypes().length > 0 && (
+                {(shouldShowShowMore() || shouldShowCollapse()) && (
                   <div class="mt-4 text-center">
-                    <button
-                      onClick={handleLoadMore}
-                      class="px-6 py-2 bg-[#F48220] text-white rounded-lg hover:bg-[#E6730F] transition-colors focus:outline-none focus:ring-2 focus:ring-[#F48220] focus:ring-offset-2"
-                    >
-                      {hasMoreItems() ? t().showMore : t().collapse}
-                    </button>
+                    {shouldShowShowMore() && (
+                      <button
+                        onClick={handleLoadMore}
+                        class="px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+                      >
+                        {t().showMore}
+                      </button>
+                    )}
+                    {shouldShowCollapse() && (
+                      <button
+                        onClick={() => setCurrentPage(1)}
+                        class="px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+                      >
+                        {t().collapse}
+                      </button>
+                    )}
                   </div>
                 )}
               </div>
@@ -238,7 +253,7 @@ function Guide() {
       <div class="fixed bottom-4 right-4">
         <button
           onClick={() => setShowLanguageDropdown(!showLanguageDropdown())}
-          class="flex items-center gap-2 px-4 py-2 bg-[#F48220] text-white rounded-lg hover:bg-[#E6730F] transition-colors focus:outline-none focus:ring-2 focus:ring-[#F48220] focus:ring-offset-2 shadow-lg"
+          class="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 shadow-lg"
         >
           <span class="text-lg">{LANGUAGES[currentLanguage()].flag}</span>
           <span>{LANGUAGES[currentLanguage()].name}</span>
@@ -258,7 +273,7 @@ function Guide() {
               <button
                 onClick={() => handleLanguageSelect(code as Language)}
                 class={`w-full px-4 py-2 text-left hover:bg-gray-100 flex items-center gap-2 ${
-                  currentLanguage() === code ? 'bg-[#FFF5ED] text-[#F48220]' : 'text-gray-700'
+                  currentLanguage() === code ? 'bg-primary/10 text-primary' : 'text-gray-700'
                 }`}
               >
                 <span class="text-lg">{lang.flag}</span>

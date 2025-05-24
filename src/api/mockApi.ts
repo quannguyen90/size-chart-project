@@ -216,7 +216,154 @@ const mockProductTypes: ProductType[] = [
     description: "",
     sizeCharts: [mockSizeCharts[0]],
     image: "https://placehold.co/200x200/FFF5ED/F48220?text=Muscle+Tee",
-  }
+  },
+  {
+    id: "oversized-tee",
+    name: "Oversized Tee",
+    description: "",
+    sizeCharts: [mockSizeCharts[0]],
+    image: "https://placehold.co/200x200/FFF5ED/F48220?text=Oversized+Tee",
+  },
+  {
+    id: "crop-top",
+    name: "Crop Top",
+    description: "",
+    sizeCharts: [mockSizeCharts[0]],
+    image: "https://placehold.co/200x200/FFF5ED/F48220?text=Crop+Top",
+  },
+  {
+    id: "sports-bra",
+    name: "Sports Bra",
+    description: "",
+    sizeCharts: [mockSizeCharts[0]],
+    image: "https://placehold.co/200x200/FFF5ED/F48220?text=Sports+Bra",
+  },
+  {
+    id: "leggings",
+    name: "Leggings",
+    description: "",
+    sizeCharts: [mockSizeCharts[1]],
+    image: "https://placehold.co/200x200/FFF5ED/F48220?text=Leggings",
+  },
+  {
+    id: "shorts",
+    name: "Shorts",
+    description: "",
+    sizeCharts: [mockSizeCharts[1]],
+    image: "https://placehold.co/200x200/FFF5ED/F48220?text=Shorts",
+  },
+  {
+    id: "joggers",
+    name: "Joggers",
+    description: "",
+    sizeCharts: [mockSizeCharts[1]],
+    image: "https://placehold.co/200x200/FFF5ED/F48220?text=Joggers",
+  },
+  {
+    id: "sweatpants",
+    name: "Sweatpants",
+    description: "",
+    sizeCharts: [mockSizeCharts[1]],
+    image: "https://placehold.co/200x200/FFF5ED/F48220?text=Sweatpants",
+  },
+  {
+    id: "denim-jacket",
+    name: "Denim Jacket",
+    description: "",
+    sizeCharts: [mockSizeCharts[0]],
+    image: "https://placehold.co/200x200/FFF5ED/F48220?text=Denim+Jacket",
+  },
+  {
+    id: "windbreaker",
+    name: "Windbreaker",
+    description: "",
+    sizeCharts: [mockSizeCharts[0]],
+    image: "https://placehold.co/200x200/FFF5ED/F48220?text=Windbreaker",
+  },
+  {
+    id: "puffer-jacket",
+    name: "Puffer Jacket",
+    description: "",
+    sizeCharts: [mockSizeCharts[0]],
+    image: "https://placehold.co/200x200/FFF5ED/F48220?text=Puffer+Jacket",
+  },
+  {
+    id: "raincoat",
+    name: "Raincoat",
+    description: "",
+    sizeCharts: [mockSizeCharts[0]],
+    image: "https://placehold.co/200x200/FFF5ED/F48220?text=Raincoat",
+  },
+  {
+    id: "trench-coat",
+    name: "Trench Coat",
+    description: "",
+    sizeCharts: [mockSizeCharts[0]],
+    image: "https://placehold.co/200x200/FFF5ED/F48220?text=Trench+Coat",
+  },
+  {
+    id: "blazer",
+    name: "Blazer",
+    description: "",
+    sizeCharts: [mockSizeCharts[0]],
+    image: "https://placehold.co/200x200/FFF5ED/F48220?text=Blazer",
+  },
+  {
+    id: "cardigan",
+    name: "Cardigan",
+    description: "",
+    sizeCharts: [mockSizeCharts[0]],
+    image: "https://placehold.co/200x200/FFF5ED/F48220?text=Cardigan",
+  },
+  {
+    id: "vest",
+    name: "Vest",
+    description: "",
+    sizeCharts: [mockSizeCharts[0]],
+    image: "https://placehold.co/200x200/FFF5ED/F48220?text=Vest",
+  },
+  {
+    id: "parka",
+    name: "Parka",
+    description: "",
+    sizeCharts: [mockSizeCharts[0]],
+    image: "https://placehold.co/200x200/FFF5ED/F48220?text=Parka",
+  },
+  {
+    id: "peacoat",
+    name: "Peacoat",
+    description: "",
+    sizeCharts: [mockSizeCharts[0]],
+    image: "https://placehold.co/200x200/FFF5ED/F48220?text=Peacoat",
+  },
+  {
+    id: "bomber-jacket",
+    name: "Bomber Jacket",
+    description: "",
+    sizeCharts: [mockSizeCharts[0]],
+    image: "https://placehold.co/200x200/FFF5ED/F48220?text=Bomber+Jacket",
+  },
+  {
+    id: "leather-jacket",
+    name: "Leather Jacket",
+    description: "",
+    sizeCharts: [mockSizeCharts[0]],
+    image: "https://placehold.co/200x200/FFF5ED/F48220?text=Leather+Jacket",
+  },
+  {
+    id: "suit-jacket",
+    name: "Suit Jacket",
+    description: "",
+    sizeCharts: [mockSizeCharts[0]],
+    image: "https://placehold.co/200x200/FFF5ED/F48220?text=Suit+Jacket",
+  },
+  {
+    id: "tuxedo",
+    name: "Tuxedo",
+    description: "",
+    sizeCharts: [mockSizeCharts[0]],
+    image: "https://placehold.co/200x200/FFF5ED/F48220?text=Tuxedo",
+  },
 ];
 
 const mockProductCategories: ProductCategory[] = [
@@ -270,4 +417,10 @@ export const getSizeChart = async (
   }
 
   return foundSizeChart;
+};
+
+export const getProductCategories = async (): Promise<ProductCategory[]> => {
+  // Simulate API delay
+  await new Promise((resolve) => setTimeout(resolve, 500));
+  return mockProductCategories;
 };

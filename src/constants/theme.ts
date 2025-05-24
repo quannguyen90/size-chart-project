@@ -1,22 +1,28 @@
 export const THEME = {
   colors: {
     primary: {
-      main: '#F48220',
-      light: '#FFF5ED',
-      dark: '#E6730F',
+      main: '#2563eb', // Tailwind blue-600, matches focus highlight
+      light: '#E8F1FF', // Lighter blue background
+      dark: '#1e40af', // Tailwind blue-800
+    },
+    accent: {
+      main: '#00B96L', // LarkSuite green accent
+      light: '#E6FAF0',
+      dark: '#008C4A',
     },
     text: {
-      primary: '#1F2937', // gray-900
-      secondary: '#4B5563', // gray-600
-      light: '#9CA3AF', // gray-400
+      primary: '#1D2129', // LarkSuite dark text
+      secondary: '#4E5969', // LarkSuite secondary text
+      light: '#86909C', // LarkSuite light text
+      link: '#2563eb', // Tailwind blue-600
     },
     background: {
-      default: '#F9FAFB', // gray-50
+      default: '#F7F8FA', // LarkSuite background
       paper: '#FFFFFF',
     },
     border: {
-      default: '#E5E7EB', // gray-200
-      selected: '#F48220',
+      default: '#E5E6EB', // LarkSuite border
+      selected: '#2563eb',
     }
   },
   spacing: {
@@ -26,7 +32,10 @@ export const THEME = {
     }
   },
   borderRadius: {
-    default: '0.5rem', // 8px
-    button: '0.5rem', // 8px
+    default: '0.75rem', // 12px, more rounded
+    button: '1.5rem', // 24px, pill-shaped buttons
+  },
+  fontFamily: {
+    main: '"Inter", "LarkSans", "Helvetica Neue", Arial, sans-serif',
   }
-} as const; 
+} as const;
