@@ -11,12 +11,6 @@ export default defineConfig({
     outDir: 'dist',
     assetsDir: 'assets',
     target: "esnext",
-    rollupOptions: {
-      input: {
-        main: 'index.html',
-        embed: 'src/embed/index.tsx'
-      }
-    }
   },
   resolve: {
     alias: {
