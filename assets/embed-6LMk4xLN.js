@@ -1,0 +1,1 @@
+import{r as o,e,R as t,f as r,h as a,j as n}from"./shopbase-embed-CwlqdaKX.js";function m(){return e(n,{base:"/size-chart-project",get children(){return[e(t,{path:"/embed/:customerId/:sizeChartId",component:r}),e(t,{path:"/embed/shopbase",component:a})]}})}o(()=>e(m,{}),document.getElementById("root"));
