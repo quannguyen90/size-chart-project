@@ -1,11 +1,12 @@
 <script>
-  // SPA redirect for GitHub Pages: preserve path for client-side router
-  var path = location.pathname.replace('/size-chart-project', '');
-  var search = location.search || '';
-  var hash = location.hash || '';
-  var newUrl = '/size-chart-project/index.html' + search + hash;
-  // Replace the current history entry with the original path
-  history.replaceState(null, '', '/size-chart-project' + path + search + hash);
-  // Redirect to index.html
-  location.replace(newUrl);
+  // SPA redirect for GitHub Pages: store original path and redirect to index.html
+  (function() {
+    var l = window.location;
+    var pathname = l.pathname.replace('/size-chart-project', '');
+    if (!pathname.startsWith('/index.html')) {
+      var newUrl = '/size-chart-project/index.html' + l.search + l.hash;
+      sessionStorage.redirect = pathname + l.search + l.hash;
+      window.location.replace(newUrl);
+    }
+  })();
 </script> 
