@@ -19,6 +19,7 @@ function SizeChartEmbed() {
   };
 
   onMount(async () => {
+    console.log('SizeChartEmbed mounted');
     try {
       // Get URL parameters
       const urlParams = new URLSearchParams(window.location.search);
@@ -60,6 +61,7 @@ function SizeChartEmbed() {
 
   return (
     <div class="bg-white p-4 rounded-lg shadow-md">
+      <h1 style="color: red; font-size: 2rem;">Embed Component Loaded</h1>
       {loading() ? (
         <div class="text-center">
           <div class="inline-block animate-spin rounded-full h-8 w-8 border-4 border-gray-300 border-t-[#F48220]"></div>
