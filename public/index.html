@@ -1,8 +1,0 @@
-<script>
-  if (sessionStorage.redirect) {
-    var redirect = sessionStorage.redirect;
-    sessionStorage.removeItem('redirect');
-    window.history.replaceState(null, null, '/size-chart-project' + redirect);
-  }
-</script>
-<div id="root"></div> 
