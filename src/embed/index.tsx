@@ -13,3 +13,4 @@ function EmbedApp() {
 }
 
 render(() => <EmbedApp />, document.getElementById('root')!);
+
