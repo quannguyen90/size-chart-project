@@ -27,7 +27,7 @@ export interface ProductCategory {
 }
 
 // Mock Data
-const mockSizeCharts: SizeChart[] = [
+export const mockSizeCharts: SizeChart[] = [
   {
     id: "tshirt-1",
     name: "T-Shirt Size Chart",
@@ -90,7 +90,7 @@ const mockSizeCharts: SizeChart[] = [
   },
 ];
 
-const mockProductTypes: ProductType[] = [
+export const mockProductTypes: ProductType[] = [
   {
     id: "classic-tee",
     name: "Classic Tee",
@@ -366,7 +366,7 @@ const mockProductTypes: ProductType[] = [
   },
 ];
 
-const mockProductCategories: ProductCategory[] = [
+export const mockProductCategories: ProductCategory[] = [
     {
         id: "apparel",
         name: "Apparel",
